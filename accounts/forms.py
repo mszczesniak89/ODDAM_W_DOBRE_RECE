@@ -8,8 +8,8 @@ from .models import CustomUser
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(max_length=16, widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Username...'}))
+    email = forms.CharField(max_length=50, widget=forms.EmailInput(
+        attrs={'class': 'form-control', 'placeholder': 'Email...'}))
     password = forms.CharField(max_length=16, widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Password...'}))
     captcha = ReCaptchaField(widget=ReCaptchaV3)
@@ -24,11 +24,8 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'password1', 'password2', 'email']
+        fields = ['first_name', 'last_name', 'password1', 'password2', 'email']
         widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Username...'}),
             'email': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'E-mail....'}),
@@ -40,7 +37,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'password')
+        fields = ('first_name', 'last_name', 'email', 'password')
 
 
 class CustomUserPasswordReset(PasswordResetForm):

@@ -21,7 +21,7 @@ from main.views import HomePage, AddDonation
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('', HomePage.as_view(), name='home'),
     path('add-donation/', AddDonation.as_view(), name='add-donation'),
 ]
